@@ -1,5 +1,5 @@
-# Step 1: Use an official Node.js runtime as the base image
-FROM node:16-alpine
+# Step 1: Use an official Node.js 20 runtime as the base image
+FROM node:20-alpine
 
 # Step 2: Set the working directory in the container
 WORKDIR /app
@@ -18,3 +18,4 @@ EXPOSE 4000
 
 # Step 7: Define the command to run the application
 CMD ["npm", "start"]
+
