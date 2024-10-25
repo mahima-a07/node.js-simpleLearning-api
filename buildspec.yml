@@ -7,8 +7,7 @@ phases:
       - npm install
   build:
     commands:
-      - echo "Running npm build"
-      - npm run build
+      - npm start
       - echo "Building Docker image"
       - docker build -t nodejs-rest-api .
       - docker tag nodejs-rest-api:latest 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo:latest
