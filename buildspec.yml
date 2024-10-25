@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies"
+      - npm install
+  build:
+    commands:
+      - echo "Running npm build"
+      - npm run build
+      - echo "Building Docker image"
+      - docker build -t nodejs-rest-api .
+      - docker tag nodejs-rest-api:latest 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo:latest
+      - $(aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo)
+      - docker push 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo:latest
+  post_build:
+    commands:
+      - echo "Deploying to EKS"
+      - kubectl apply -f Deployment.yaml
+      - kubectl apply -f Service.yaml
+
+artifacts:
+  files:
+    - '**/*'
+
