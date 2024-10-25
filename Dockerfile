@@ -1,21 +1,27 @@
-# Step 1: Use an official Node.js 20 runtime as the base image
-FROM node:20.0.0-alpine
+# Use a specific version tag to avoid pulling every time
+FROM node:20.0.0-alpine AS base
 
-# Step 2: Set the working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Step 3: Copy the package.json and package-lock.json files
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Step 4: Install dependencies
+# Install dependencies (cached layer)
 RUN npm install
 
-# Step 5: Copy the rest of the application code
+# Copy application files
 COPY . .
+
+# Build the application
+RUN npm run build
 
 # Step 6: Expose the port the app runs on
 EXPOSE 4000
 
-# Step 7: Define the command to run the application
+# Start the application
 CMD ["npm", "start"]
+
+
+
 
