@@ -10,7 +10,7 @@ phases:
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 316323739720.dkr.ecr.us-west-2.amazonaws.com
       - echo "Building Docker image"
       - docker build -t nodejs-rest-api .
-      - docker tag nodejs-rest-api:latest 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo:latest
+      - docker tag nodejs:latest 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo:latest
       - docker push 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo:latest
   post_build:
     commands:
