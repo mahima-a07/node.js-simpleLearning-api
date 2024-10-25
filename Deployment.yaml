@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-rest-api-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-rest-api
+  template:
+    metadata:
+      labels:
+        app: nodejs-rest-api
+    spec:
+      containers:
+      - name: nodejs-rest-api
+        image: 316323739720.dkr.ecr.us-west-2.amazonaws.com/nodejs-rest-api-repo:latest
+        ports:
+        - containerPort: 4000

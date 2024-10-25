@@ -1,1 +1,70 @@
-node_modules
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs/
+*.log
+logs/*.log
+
+# Dependency directories
+/node_modules
+/.pnp
+.pnp.js
+
+# Build and compiled files
+build/
+dist/
+coverage/
+
+# dotenv environment files
+.env
+.env.local
+.env.*.local
+
+# Docker-related files
+docker-compose.yml
+Dockerfile
+
+# AWS credentials and config
+.aws/
+*.pem
+*.key
+
+# CodeBuild files
+codebuild/
+buildspec.yml # Keep this if you want to include it in the repository
+
+# Terraform state files (if used for infrastructure)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Kubernetes config files (if local configs should be excluded)
+.kube/
+*.kubeconfig
+
+# Temporary files
+*.swp
+*.DS_Store
+*.bak
+
+# S3 or other backup files
+*.bak
+*.old
+
+# Ignore any artifacts from builds
+coverage/
+*.tgz
+
+# Ignore IDE/editor configs and settings
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore miscellaneous system files
+Thumbs.db
+.DS_Store
+
