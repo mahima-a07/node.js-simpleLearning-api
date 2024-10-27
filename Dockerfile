@@ -1,23 +1,28 @@
-# Use a specific version tag to avoid pulling every time
-FROM node:20.0.0-alpine AS base
+# Use Node.js to build the app first
+FROM node:20 as build
 
-# Set working directory
+# Set working directory and copy dependencies
 WORKDIR /app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies (cached layer)
 RUN npm install
 
-# Copy application files
+# Copy application code and build
 COPY . .
+RUN npm run build
 
-# Step 6: Expose the port the app runs on
+# Use distroless as the runtime base image
+FROM gcr.io/distroless/nodejs20
+
+# Copy built app from the previous stage
+COPY --from=build /app /app
+
+# Set working directory and expose port
+WORKDIR /app
 EXPOSE 4000
 
-# Start the application
-CMD ["npm", "start"]
+# Start the app
+CMD ["app/index.js"]
+
 
 
 
