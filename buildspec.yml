@@ -15,7 +15,7 @@ phases:
   post_build:
     commands:
       - echo "Deploying to EKS"
-      - aws eks update-kubeconfig --name react-eks-cluster-bymahi --region us-west-2
+      - aws eks update-kubeconfig --name nodejs-api-eks-bymahi --region us-west-2
       - kubectl apply -f Deployment.yaml
       - kubectl apply -f Service.yaml
 
